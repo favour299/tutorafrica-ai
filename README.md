@@ -1,2 +1,2 @@
-# TutorAfrica-AI
+# tutorafrica-ai
 AI tutor website for African Students, parents, and schools
