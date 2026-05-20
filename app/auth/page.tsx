@@ -1,46 +1,61 @@
+"use client";
+
+import { useState } from "react";
+
 export default function AuthPage() {
+  const [role, setRole] = useState("student");
+
+  const handleLogin = () => {
+    if (role === "student") window.location.href = "/student";
+    if (role === "parent") window.location.href = "/parent";
+    if (role === "teacher") window.location.href = "/teacher";
+    if (role === "school") window.location.href = "/school";
+    if (role === "admin") window.location.href = "/admin";
+  };
+
   return (
-    <main className="min-h-screen bg-white p-10">
-      <h1 className="text-4xl font-bold text-blue-700">
-        TutorAfrica AI - Authentication
-      </h1>
+    <main className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+      <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
+        <h1 className="text-3xl font-bold text-blue-700 text-center">
+          TutorAfrica AI Login
+        </h1>
 
-      <p className="mt-4 text-lg text-gray-700">
-        Secure login for all TutorAfrica AI users.
-      </p>
+        <p className="text-gray-600 text-center mt-2">
+          Secure access for students, parents, teachers, schools and admins.
+        </p>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-2">
+        <div className="mt-6 space-y-4">
+          <input
+            type="email"
+            placeholder="Enter Email"
+            className="w-full p-3 border rounded-xl"
+          />
 
-        <div className="p-5 border rounded-xl">
-          🎓 Student Login
-          <p>Access personal learning dashboard</p>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            className="w-full p-3 border rounded-xl"
+          />
+
+          <select
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            className="w-full p-3 border rounded-xl"
+          >
+            <option value="student">Student</option>
+            <option value="parent">Parent</option>
+            <option value="teacher">Teacher</option>
+            <option value="school">School Admin</option>
+            <option value="admin">Platform Admin</option>
+          </select>
+
+          <button
+            onClick={handleLogin}
+            className="w-full bg-blue-700 text-white p-3 rounded-xl font-semibold"
+          >
+            Login
+          </button>
         </div>
-
-        <div className="p-5 border rounded-xl">
-          👨‍👩‍👧 Parent Login
-          <p>Monitor child progress securely</p>
-        </div>
-
-        <div className="p-5 border rounded-xl">
-          👩🏽‍🏫 Teacher Login
-          <p>Manage classes and assignments</p>
-        </div>
-
-        <div className="p-5 border rounded-xl">
-          🏫 School Admin Login
-          <p>Manage school data and users</p>
-        </div>
-
-        <div className="p-5 border rounded-xl">
-          ⚙️ Platform Admin Login
-          <p>Global platform control</p>
-        </div>
-
-        <div className="p-5 border rounded-xl">
-          🔐 Security Features
-          <p>Role-based access and protected dashboards</p>
-        </div>
-
       </div>
     </main>
   );
